@@ -9,6 +9,11 @@ function SingleProduct() {
     product.attributes;
 
   const [productColor, setProductColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  function handleAmount(e) {
+    setAmount(Number(e.target.value));
+  }
 
   return (
     <section>
@@ -59,6 +64,37 @@ function SingleProduct() {
                 ></button>
               ))}
             </div>
+          </div>
+
+          {/* AMOUNT */}
+          <div className="form-control w-full max-w-xs">
+            <label htmlFor="amount" className="label">
+              <h4 className="text-md font-medium -tracking-wider capitalize">
+                amount
+              </h4>
+            </label>
+            <select
+              name="amount"
+              id="amount"
+              className="select select-secondary select-bordered select-md"
+              value={amount}
+              onChange={handleAmount}
+            >
+              {Array.from({ length: 3 }, (_, i) => (
+                <option value={i + 1} key={i}>
+                  {i + 1}
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* CART BUTTON */}
+          <div className="mt-10">
+            <button
+              className="btn btn-secondary btn-md"
+              onClick={() => console.log("add to bag")}
+            >
+              Add to bag
+            </button>
           </div>
         </div>
       </div>
