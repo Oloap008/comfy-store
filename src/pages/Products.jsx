@@ -5,9 +5,13 @@ import ProductsContainer from "../components/ProductsContainer";
 import { getProducts } from "../services/apiProducts";
 
 export async function loader({ request }) {
-  const { data: products, meta } = await getProducts();
+  const params = new URL(request.url).searchParams;
+  const strParams = params.toString();
+  const objParams = Object.fromEntries([...params.entries()]);
 
-  return { products, meta };
+  const { data: products, meta } = await getProducts(strParams);
+
+  return { products, meta, objParams };
 }
 
 function Products() {

@@ -10,8 +10,12 @@ export async function getFeaturedProducts() {
   return data;
 }
 
-export async function getProducts() {
-  const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/products`);
+export async function getProducts(params) {
+  const query = params !== "" ? `?${params}` : "";
+
+  const res = await fetch(
+    `${import.meta.env.VITE_API_BASE_URL}/products${query}`
+  );
 
   if (!res.ok) throw new Error("There was an error loading products");
 
