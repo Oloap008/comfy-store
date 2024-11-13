@@ -18,6 +18,9 @@ import { ErrorElement } from "./components";
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { ToastContainer } from "react-toastify";
 
 const router = createBrowserRouter([
   {
@@ -74,7 +77,12 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />;
+      <ToastContainer position="top-center" />
+    </Provider>
+  );
 }
 
 export default App;
