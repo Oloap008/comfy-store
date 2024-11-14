@@ -11,7 +11,7 @@ function ProductsGrid() {
 
         return (
           <Link
-            to={`products/${product.id}`}
+            to={`/products/${product.id}`}
             key={product.id}
             className="card w-full shadow-xl hover:shadow-2xl transition duration-300"
           >

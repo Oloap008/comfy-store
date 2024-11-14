@@ -79,7 +79,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <Provider store={store}>
-      <RouterProvider router={router} />;
+      <RouterProvider router={router} />
       <ToastContainer position="top-center" />
     </Provider>
   );
