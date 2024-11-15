@@ -12,15 +12,16 @@ import {
   Register,
   SingleProduct,
 } from "./pages";
-
 import { ErrorElement } from "./components";
+import { Provider } from "react-redux";
+import { store } from "./store";
+import { ToastContainer } from "react-toastify";
 
 import { loader as landingLoader } from "./pages/Landing";
 import { loader as singleProductLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
-import { Provider } from "react-redux";
-import { store } from "./store";
-import { ToastContainer } from "react-toastify";
+
+import { action as registerAction } from "./pages/Register";
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,7 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Register />,
+    action: registerAction,
     errorElement: <Error />,
   },
 ]);
