@@ -7,11 +7,13 @@ const themes = {
 };
 
 const initialState = {
-  user: {
-    username: "coding addict",
-  },
+  user: getUserFromLocalStorage(),
   theme: getThemeFromLocalStorage(),
 };
+
+function getUserFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("user")) || null;
+}
 
 function getThemeFromLocalStorage() {
   const windowPreference = window.matchMedia("(prefers-color-scheme: light)")
@@ -31,7 +33,8 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     loginUser(state, action) {
-      console.log("login");
+      state.user = action.payload;
+      localStorage.setItem("user", JSON.stringify(state.user));
     },
     logoutUser(state) {
       state.user = null;
