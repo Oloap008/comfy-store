@@ -33,7 +33,7 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     loginUser(state, action) {
-      state.user = action.payload;
+      state.user = { ...action.payload.user, token: action.payload.jwt };
       localStorage.setItem("user", JSON.stringify(state.user));
     },
     logoutUser(state) {

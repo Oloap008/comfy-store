@@ -38,7 +38,7 @@ function Login() {
     if (response.user) {
       toast.success("Logged in successfull as a guest user");
 
-      dispatch(loginUser(response.user));
+      dispatch(loginUser(response));
       return navigate("/");
     } else {
       toast.error("Guest user login error. Please try again.");
