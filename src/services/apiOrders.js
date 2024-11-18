@@ -19,7 +19,32 @@ export async function createOrder({ data, token }) {
 
     return { type: "success", order };
   } catch (error) {
-    console.log(error);
+    return { type: "error400", message: error.message };
+  }
+}
+
+export async function getOrders({ page = 1, token }) {
+  try {
+    const res = await fetch(
+      `${import.meta.env.VITE_API_BASE_URL}/orders?page=${page}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const orders = await res.json();
+
+    if (!res.ok) {
+      if (orders.error.status === 401 || orders.error.status === 403)
+        return { type: "authError", message: orders.error.message };
+
+      throw new Error(orders.error.message);
+    }
+
+    return { type: "success", orders };
+  } catch (error) {
     return { type: "error400", message: error.message };
   }
 }

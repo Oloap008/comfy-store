@@ -13,3 +13,4 @@ export { default as ProductsContainer } from "./ProductsContainer";
 export { default as Loader } from "./Loader";
 export { default as CartTotals } from "./CartTotals";
 export { default as CartItemsList } from "./CartItemsList";
+export { default as OrdersList } from "./OrdersList";
