@@ -12,8 +12,8 @@ export async function createOrder({ data, token }) {
     const order = await res.json();
 
     if (!res.ok) {
-      if (order.error.status === 401)
-        return { type: "error401", message: order.error.message };
+      if (order.error.status === 401 || order.error.status === 403)
+        return { type: "authError", message: order.error.message };
       throw new Error(order.error.message);
     }
 
