@@ -11,13 +11,15 @@ export async function createOrder({ data, token }) {
 
     const order = await res.json();
 
-    if (!res.ok)
-      throw new Error(
-        "There was an error placing your order. Please try again later."
-      );
+    if (!res.ok) {
+      if (order.error.status === 401)
+        return { type: "error401", message: order.error.message };
+      throw new Error(order.error.message);
+    }
 
     return { type: "success", order };
   } catch (error) {
-    return { type: "error", message: error.message };
+    console.log(error);
+    return { type: "error400", message: error.message };
   }
 }

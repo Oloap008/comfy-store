@@ -30,6 +30,9 @@ export async function action({ request }) {
     store.dispatch(clearCart());
     toast.success("Order placed successfully");
     return redirect("/orders");
+  } else if (response.type === "error401") {
+    toast.error(response.message);
+    return redirect("/login");
   } else {
     toast.error(response.message);
     return null;
